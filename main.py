@@ -5,7 +5,7 @@ import discord
 # CONFIGURAÇÃO E LÓGICA DO BOT DISCORD
 # ==========================================
 TOKEN = os.getenv("DISCORD_TOKEN")
-DEFAULT_GIF_URL = "https://tenor.com/view/fernos6-ferno-la-lechuga-cursed-gif-20864361"
+DEFAULT_GIF_URL = ""
 GIF_URL = os.getenv("GIF_URL", DEFAULT_GIF_URL).strip()
 
 # Dicionário de comandos -> GIFs
@@ -27,6 +27,7 @@ COMMAND_GIFS = {
     "spzumbis": "https://klipy.com/gifs/star-platinum-jotaro-2",
     "sptaca": "https://klipy.com/gifs/star-platinum-jojos-3",
     "bestialtaca": "https://klipy.com/gifs/beast-titan-titan-bestial",
+    # "testar": "https://seu-gif-aqui.com",  # DESATIVADO - Marcadores: -testar- e -testarw-
 }
 
 WEBHOOK_SUFFIX = "w"  # sufixo para a variação focada em webhooks
