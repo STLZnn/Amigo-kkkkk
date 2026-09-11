@@ -25,7 +25,7 @@ def keep_alive():
 # 2. CONFIGURAÇÃO E LÓGICA DO BOT DISCORD
 # ==========================================
 TOKEN = os.getenv("DISCORD_TOKEN")
-DEFAULT_GIF_URL = "https://tenor.com"
+DEFAULT_GIF_URL = "https://tenor.com/view/guy-punches-sunflowers-pvz-plants-vs-zombies-gif-6137659021579759562"
 GIF_URL = os.getenv("GIF_URL", DEFAULT_GIF_URL).strip()
 NORMAL_MARKER = os.getenv("NORMAL_MARKER", "-testar-")
 WEBHOOK_MARKER = os.getenv("WEBHOOK_MARKER", "-testarw-")
