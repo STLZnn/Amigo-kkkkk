@@ -1,31 +1,11 @@
 import os
 import discord
-from flask import Flask
-from threading import Thread
 
 # ==========================================
-# 1. SISTEMA WEB PARA MANTER O BOT ACORDADO
-# ==========================================
-app = Flask('')
-
-@app.route('/')
-def home():
-    return "Bot Reenvio está online!"
-
-def run_server():
-    # O Render usa a porta 8080 por padrão se configurado nas variáveis
-    app.run(host='0.0.0.0', port=8080)
-
-def keep_alive():
-    t = Thread(target=run_server)
-    t.daemon = True  # Garante que a thread feche se o bot fechar
-    t.start()
-
-# ==========================================
-# 2. CONFIGURAÇÃO E LÓGICA DO BOT DISCORD
+# CONFIGURAÇÃO E LÓGICA DO BOT DISCORD
 # ==========================================
 TOKEN = os.getenv("DISCORD_TOKEN")
-DEFAULT_GIF_URL = "https://tenor.com/view/guy-punches-sunflowers-pvz-plants-vs-zombies-gif-6137659021579759562"
+DEFAULT_GIF_URL = "https://tenor.com/view/fernos6-ferno-la-lechuga-cursed-gif-20864361"
 GIF_URL = os.getenv("GIF_URL", DEFAULT_GIF_URL).strip()
 NORMAL_MARKER = os.getenv("NORMAL_MARKER", "-testar-")
 WEBHOOK_MARKER = os.getenv("WEBHOOK_MARKER", "-testarw-")
@@ -34,7 +14,7 @@ WEBHOOK_NAME = "Reenvio"
 if not TOKEN:
     raise RuntimeError(
         "A variável DISCORD_TOKEN não foi configurada. "
-        "Adicione-a nas Environment Variables do Render ou do Pydroid."
+        "Adicione-a em Secrets no Replit."
     )
 
 intents = discord.Intents.default()
@@ -47,9 +27,11 @@ async def on_ready() -> None:
 
 @bot.event
 async def on_message(message: discord.Message) -> None:
+    # Nunca processe mensagens enviadas pelo próprio bot.
     if message.author == bot.user:
         return
 
+    # Mensagens normais usam -testar-; mensagens de webhook usam -testarw-.
     marker = WEBHOOK_MARKER if message.webhook_id else NORMAL_MARKER
     if marker not in message.content:
         return
@@ -86,13 +68,15 @@ async def on_message(message: discord.Message) -> None:
             wait=False,
         )
     except discord.Forbidden:
-        print("Sem permissão para listar/criar webhooks ou enviar mensagens neste canal.")
+        print(
+            "Sem permissão para listar/criar webhooks ou enviar mensagens "
+            "neste canal."
+        )
     except discord.HTTPException as error:
         print(f"Erro da API do Discord ao reenviar a mensagem: {error}")
 
 # ==========================================
-# 3. INICIALIZAÇÃO DO SISTEMA
+# INICIALIZAÇÃO DO BOT
 # ==========================================
 if __name__ == "__main__":
-    keep_alive()  # Liga o servidor Flask em segundo plano
-    bot.run(TOKEN)  # Inicia o bot usando a variável segura
+    bot.run(TOKEN)
