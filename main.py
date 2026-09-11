@@ -14,7 +14,7 @@ WEBHOOK_NAME = "Reenvio"
 if not TOKEN:
     raise RuntimeError(
         "A variável DISCORD_TOKEN não foi configurada. "
-        "Adicione-a em Secrets no Replit."
+        "Adicione-a nas variáveis de inicialização (Startup) do painel."
     )
 
 intents = discord.Intents.default()
