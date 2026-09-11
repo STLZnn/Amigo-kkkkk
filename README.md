@@ -1,19 +1,18 @@
 # 🤖 Amigo - Discord Bot
 
-Um bot Discord que funciona como um "amigo" resposnador, permitindo reenviar mensagens através de webhooks com avatar e nome personalizados.
+Um bot Discord que funciona como um "amigo" respondedor, permitindo reenviar mensagens através de webhooks com avatar e nome personalizados.
 
 ## 📋 Requisitos
 
 - Python 3.8+
-- Discord.py
+- discord.py
 - Token de bot Discord
 
-## 🚀 Como Usar
+## 🚀 Como Usar no Pella
 
-### 1. Configurar no Replit
+### 1. Configurar Variáveis de Ambiente
 
-1. Vá para **Secrets** (ícone de chave 🔑) no painel esquerdo
-2. Adicione as seguintes variáveis de ambiente:
+No Pella, adicione as seguintes variáveis de ambiente nas **Settings** ou **Environment Variables**:
 
 | Variável | Descrição | Obrigatório |
 |----------|-----------|------------|
@@ -59,7 +58,7 @@ Bot: [Reenvia como você via webhook]
 1. Vá para [Discord Developer Portal](https://discord.com/developers/applications)
 2. Crie uma nova aplicação
 3. Na aba **Bot**, clique em **Add Bot**
-4. Copie o **TOKEN** e adicione em Secrets do Replit como `DISCORD_TOKEN`
+4. Copie o **TOKEN** e adicione nas variáveis de ambiente do Pella como `DISCORD_TOKEN`
 5. Ative as **Intents**:
    - ✅ Message Content Intent
    - ✅ Server Members Intent
@@ -71,7 +70,7 @@ Bot: [Reenvia como você via webhook]
 
 ## 🐛 Troubleshooting
 
-- **Bot não conecta**: Verifique se `DISCORD_TOKEN` está configurado corretamente nos Secrets
+- **Bot não conecta**: Verifique se `DISCORD_TOKEN` está configurado corretamente nas variáveis de ambiente
 - **Sem permissão para apagar mensagens**: O bot precisa de permissão "Manage Messages" no canal
 - **Webhook não é criado**: Verifique se o bot tem permissão "Manage Webhooks"
 
